@@ -1,5 +1,5 @@
 # iDAI2Hypertopic
-A connector designed to use an iDAI.field database with Hypertopic.
+Map functions designed to use an iDAI.field database with Hypertopic.
 
 ## Introduction
 iDAI.field is a software, developed by the German Archaeological Institute, designed to document archaeological items found during field research. For more information on iDAI.field, please check this repository : https://github.com/dainst/idai-field.
@@ -28,7 +28,7 @@ This solution lets the user see the items from iDAI.field into Porphyry, using s
 The images associated to iDAI.field items are currently ignored. In the data model used by iDAI.field, the various image types are all treated as separate items, that have a relation with the item they depict; as such, an item can be associated to several pictures, and a picture can depict more than one item. This is very different from Porphyry v7, where an item was considered equivalent to a picture. This case was also difficult to treat in a map function, as a picture in iDAI.field is a entity (and a document) fully separate from the item it describes.
 A second issue is that we currently do not know whether it is possible to access the images stored by the distant iDAI.field database with Porphyry.
 
-### Syncing multiple iDAI.fiel projects
+### Syncing multiple iDAI.field projects
 Another limitation is that, although it is possible to import several iDAI.field projects, the resulting corpora will all have the same name and id "project" - iDAI.field treats every project as an entity that has the id "project" in a separate database, and a map function couldn't recover the project name for each item, as the name is only described in the Project document.
 
 ### Replication

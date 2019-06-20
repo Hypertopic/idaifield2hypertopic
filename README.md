@@ -30,7 +30,7 @@ Another alternative is to create the replication via an HTTP POST request http:/
         }
 
 ### 2. Argos installation
-Once the databases are duplicated, follow the installation procedure of Argos described here : <https://github.com/Hypertopic/Argos> in each duplicated database. This will add a design document _design/argos_ with a set of views :
+Once the databases are duplicated, follow the installation procedure of Argos described here : <https://github.com/Hypertopic/Argos> in each duplicated database. This will add a design document `design/argos` with a set of views :
 * attribute
 * corpus
 * corpusV1

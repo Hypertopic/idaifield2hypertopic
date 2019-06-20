@@ -43,7 +43,7 @@ Once the databases are duplicated, follow the installation procedure of Argos de
 * viewpointV1
 
 ### 3. Views' update
-To let Porphyry read the iDAI.field data correctly, the view user and corpus need to be update with the given map functions. The views can now be access via the following addresses :
+To let Porphyry read the iDAI.field data correctly, the view **user** and **corpus** need to be update with the given map functions. The views can now be access via the following addresses :
 
 * the User view is available to the following address: <http://127.0.0.1:5984/[replicationDatabaseName]/_design/argos/_rewrite/user/offrandes>
 * the Corpus view is available to the following address : <http://127.0.0.1:5984/[replicationDatabaseName]/_design/argos/_view/corpus>

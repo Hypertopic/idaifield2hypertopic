@@ -18,18 +18,18 @@ This solution lets the user see the items from iDAI.field into Porphyry, using s
 ## Configuration
 
 ### 1. Continuous replication of the databases
-For each project created in iDAI.field, the software create a separate database. This one contains at least one document with `_id: project` which is the project document plus one document per item, image or location. In porphyry, each project is read as a corpus.
+For each project created in iDAI.field, the software creates a separate database. This one contains at least one document with `_id: project` which is the project document. It also creates one document per item, image or location. In porphyry, each project will be read as a corpus.
 
-To let Porphyry read the data of iDAI.field you need to replicate the data in your own database, so for example with CouchDB. An easy way to proceed the replication is to use the CouchDB interface. In the `Replication` part you need to fill the inputs.
+To let Porphyry read the data of iDAI.field, you first need to replicate the data in your own CouchDB database. An easy way to proceed the replication is to use the CouchDB web interface, Fauxton. In the `Replication` part, you need to fill in these informations :
 
 * Replication Source: `Remote Database` / `Local Database`
 * Source Name: `http(s)://$USERNAME:$PASSWORD@REMOTE_SERVER/$DATABASE`
 * Replication Target: `New Remote Database` / `New Local Database`
 * New Database: `http(s)://$USERNAME:$PASSWORD@REMOTE_SERVER/$DATABASE`
 * Replication Type: `Continuous`
-* Replication Document: (this input can stay blank)
+* Replication Document: This field can be left empty.
 
-Another alternative is to create the replication via an HTTP POST request http://127.0.0.1:5984/_replicate with a service such as RESTClient:
+Another alternative is to create the replication via an HTTP POST request <http://127.0.0.1:5984/_replicate> with a service such as RESTClient:
 
         {
           "source":"db", 
@@ -38,7 +38,7 @@ Another alternative is to create the replication via an HTTP POST request http:/
         }
 
 ### 2. Argos installation
-Once the databases are duplicated, follow the installation procedure of Argos described here : <https://github.com/Hypertopic/Argos> in each duplicated database. This will add a design document `_design/argos` with the following set of views :
+Once the databases are replicated, follow the installation procedure of Argos described here : <https://github.com/Hypertopic/Argos> in each duplicated database. This will add a design document `_design/argos` with the following set of views :
 * attribute
 * corpus
 * corpusV1
@@ -51,10 +51,10 @@ Once the databases are duplicated, follow the installation procedure of Argos de
 * viewpointV1
 
 ### 3. Views' update
-To let Porphyry read the iDAI.field data correctly, the view **user** and **corpus** need to be updated with the given related map functions. The views can now be access via the following addresses :
+To let Porphyry read the iDAI.field data correctly, the view **user** and **corpus** need to be updated with the corresponding map functions available on this repository. These two views can now be accessed via the following addresses:
 
-* the User view is available to the following address: <http://127.0.0.1:5984/[replicationDatabaseName]/_design/argos/_rewrite/user/offrandes>
-* the Corpus view is available to the following address : <http://127.0.0.1:5984/[replicationDatabaseName]/_design/argos/_view/corpus>
+* User view: <http://127.0.0.1:5984/[replicationDatabaseName]/_design/argos/_rewrite/user/offrandes>
+* Corpus view: <http://127.0.0.1:5984/[replicationDatabaseName]/_design/argos/_view/corpus>
 
 ### 4. Porphyry's configuration update
 The final step is to add the link towards each database in the list of Porphyry's services. To do so, open the configuration file at `src/config/config.json` and add the links after the other ones like the example :

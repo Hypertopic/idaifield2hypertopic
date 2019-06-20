@@ -23,9 +23,9 @@ For each project created in iDAI.field, the software creates a separate database
 To let Porphyry read the data of iDAI.field, you first need to replicate the data in your own CouchDB database. An easy way to proceed the replication is to use the CouchDB web interface, Fauxton. In the `Replication` part, you need to fill in these informations :
 
 * Replication Source: `Remote Database` / `Local Database`
-* Source Name: `http(s)://$USERNAME:$PASSWORD@REMOTE_SERVER/$DATABASE`
+* Source Name: `http(s)://$USERNAME:$PASSWORD@REMOTE_SERVER/$DATABASE` / `$DATABASE`
 * Replication Target: `New Remote Database` / `New Local Database`
-* New Database: `http(s)://$USERNAME:$PASSWORD@REMOTE_SERVER/$DATABASE`
+* New Database: `http(s)://$USERNAME:$PASSWORD@REMOTE_SERVER/$DATABASE` / `$DATABASE`
 * Replication Type: `Continuous`
 * Replication Document: This field can be left empty.
 

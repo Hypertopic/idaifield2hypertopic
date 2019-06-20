@@ -2,10 +2,18 @@
 Map functions designed to use an iDAI.field database with Hypertopic.
 
 ## Introduction
-iDAI.field is a software, developed by the German Archaeological Institute, designed to document archaeological items found during field research. For more information on iDAI.field, please check this repository : https://github.com/dainst/idai-field.
+**iDAI.field** is a software, developed by the German Archaeological Institute, designed to document archaeological items found during field research. 
+
+For more information on iDAI.field, please check this repository : <https://github.com/dainst/idai-field>.
+
 The goal of this project is to find a way to connect Porphyry to iDAI.field, and to use the data stored in an iDAI.field database in Porphyry, using the Hypertopic protocol.
 
-This solution lets the user see the items from iDAI.field into Porphyry, using specific map functions. All the data associated to an iDAI item is displayed as an attribute. It is possible, for the user, to add topics/categories like any other item, and this new data is stored in the Argos database.
+This solution lets the user see the items from iDAI.field into Porphyry, using specific map functions. All the data associated to an iDAI item is displayed as an attribute. It is possible, for the user, to add topics/categories like any other item, and this new data is stored in the Argos database. It is even possible to update the attributes coming from iDAI.field. However the modifications will only be visible in Porphyry and not in iDAI.field.
+
+## Requirements
+
+* [CouchDB](http://couchdb.apache.org/)
+* [Porphyry](https://github.com/Hypertopic/Porphyry)
 
 ## Configuration
 
@@ -43,7 +51,7 @@ Once the databases are duplicated, follow the installation procedure of Argos de
 * viewpointV1
 
 ### 3. Views' update
-To let Porphyry read the iDAI.field data correctly, the view **user** and **corpus** need to be update with the given map functions. The views can now be access via the following addresses :
+To let Porphyry read the iDAI.field data correctly, the view **user** and **corpus** need to be updated with the given related map functions. The views can now be access via the following addresses :
 
 * the User view is available to the following address: <http://127.0.0.1:5984/[replicationDatabaseName]/_design/argos/_rewrite/user/offrandes>
 * the Corpus view is available to the following address : <http://127.0.0.1:5984/[replicationDatabaseName]/_design/argos/_view/corpus>
@@ -53,7 +61,7 @@ The final step is to add the link towards each database in the list of Porphyry'
 
         "http://127.0.0.1:5984/[replicationDatabaseName]/_design/argos/_rewrite"
         
-Make sure that the user is set to `offrandes`. For reminder, Porphyry source code can be found at the following link : <https://github.com/Hypertopic/Porphyry>.
+Make sure that the user is set to `offrandes`.
 
 ## Current limitations
 

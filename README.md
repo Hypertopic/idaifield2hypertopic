@@ -9,7 +9,7 @@ This solution lets the user see the items from iDAI.field into Porphyry, using s
 
 ## Configuration
 
-### Replication of the databases
+### Continuous replication of the databases
 For each project created in iDAI.field, the software create a separate database. This one contains at least one document with the id "project" which is the project document plus one document for each item, image or location.
 
 To let Porphyry read the data of iDAI.field you need to replicate the data in your own database, so for example with CouchDB. An easy way to proceed the replication is to use the CouchDB interface. In the "Replication" part you need to fill the inputs.
@@ -23,19 +23,37 @@ Replication Document: this input can stay blank
 
 Another alternative is to create the replication via an HTTP POST request http://127.0.0.1:5984/_replicate with a service such as RESTClient:
 
-{
-  "source":"db", 
-  "target":"db-replica", 
-  "continuous":true
-}
+        {
+          "source":"db", 
+          "target":"db-replica", 
+          "continuous":true
+        }
 
-## Views
-The design document is based on the argos design document. The only differences are for the 2 views Corpus and User :
+### Argos installation
+Once the databases are duplicated, follow the installation procedure of Argos described here : <https://github.com/Hypertopic/Argos> in each duplicated database. This will add a design document _design/argos_ with a set of views :
+* attribute
+* corpus
+* corpusV1
+* empty
+* fragmentV1
+* resource
+* stats
+* user
+* viewpoint
+* viewpointV1
 
-* the User view is available to the following address: <http://127.0.0.1:5984/[replicationDatabaseName]/_design/[designDocumentID]/_rewrite/user/offrandes>
-* the Corpus view is available to the following address : <http://127.0.0.1:5984/[replicationDatabaseName]/_design/[designDocumentID]/_view/corpus>
+### Views' update
+To let Porphyry read the iDAI.field data correctly, the view user and corpus need to be update with the given map functions. The views can now be access via the following addresses :
 
-These two are necesseary to let Prophyry read the iDAI.field's data. The other ones do not have any real impact on the software reading of the data but are also available and follow the same rules as Argos views.
+* the User view is available to the following address: <http://127.0.0.1:5984/[replicationDatabaseName]/_design/argos/_rewrite/user/offrandes>
+* the Corpus view is available to the following address : <http://127.0.0.1:5984/[replicationDatabaseName]/_design/argos/_view/corpus>
+
+### Porphyry's configuration update
+The final step is to add the link towards each database in the list of Porphyry's services. To do so, open the configuration file at src/config/config.json and add the links after the other ones like the example :
+
+        "http://127.0.0.1:5984/idai_project_replication/_design/argos/_rewrite"
+        
+For reminder, Porphyry source code can be found at the following link : <https://github.com/Hypertopic/Porphyry>.
 
 ## Current limitations
 

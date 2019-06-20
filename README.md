@@ -67,10 +67,11 @@ Make sure that the user is set to `offrandes`.
 
 ### Images associated to an item
 The images associated to iDAI.field items are currently ignored. In the data model used by iDAI.field, the various image types are all treated as separate items, that have a relation with the item they depict; as such, an item can be associated to several pictures, and a picture can depict more than one item. This is very different from Porphyry v7, where an item was considered equivalent to a picture. This case was also difficult to treat in a map function, as a picture in iDAI.field is a entity (and a document) fully separate from the item it describes.
-A second issue is that we currently do not know whether it is possible to access the images stored by the distant iDAI.field database with Porphyry.
+
+A second issue is that we currently do not know whether it is possible to access the images stored by the distant iDAI.field database with Porphyry. In fact, the database only store the image's `id` property and not the complete path. It is possible only to know this path when we choose to create local projects (this is written in the `config` file of iDAI.field `"imagestorePath":$PATH`).
 
 ### Syncing multiple iDAI.field projects
-Another limitation is that, although it is possible to import several iDAI.field projects, the resulting corpora will all have the same name and id "project" - iDAI.field treats every project as an entity that has the id "project" in a separate database, and a map function couldn't recover the project name for each item, as the name is only described in the Project document.
+Another limitation is that, although it is possible to import several iDAI.field projects, the resulting corpora will all have the same name and id `project` - iDAI.field treats every project as an entity that has the id `project` in a separate database, and a map function could not recover the project name for each item, as the name is only described in the Project document.
 
 ### Replication
 Finally, the synchronization between Porphyry and iDAI.field is conditioned by the replication between the databases; if it is interrupted for any reason (this seems to include a restart of the PouchDB server, but this requires further investigation), the two applications will not be synchronized anymore until the replication is resumed.

@@ -5,6 +5,8 @@ Map functions designed to use an iDAI.field database with Hypertopic.
 iDAI.field is a software, developed by the German Archaeological Institute, designed to document archaeological items found during field research. For more information on iDAI.field, please check this repository : https://github.com/dainst/idai-field.
 The goal of this project is to find a way to connect Porphyry to iDAI.field, and to use the data stored in an iDAI.field database in Porphyry, using the Hypertopic protocol.
 
+This solution lets the user see the items from iDAI.field into Porphyry, using specific map functions. All the data associated to an iDAI item is displayed as an attribute. It is possible, for the user, to add topics/categories like any other item, and this new data is stored in the Argos database.
+
 ## Configuration
 
 ### Replication of the databases
@@ -32,8 +34,6 @@ The design document is based on the argos design document. The only differences 
 These two are necesseary to let Prophyry read the iDAI.field's data. The other ones do not have any real impact on the software reading of the data but are also available and follow the same rules as Argos views.
 
 ## Current limitations
-
-This solution lets the user see the items from iDAI.field into Porphyry, using specific map functions. All the data associated to an iDAI item is displayed as an attribute. It is possible, for the user, to add topics/categories like any other item, and this new data is stored in the Argos database.
 
 ### Images associated to an item
 The images associated to iDAI.field items are currently ignored. In the data model used by iDAI.field, the various image types are all treated as separate items, that have a relation with the item they depict; as such, an item can be associated to several pictures, and a picture can depict more than one item. This is very different from Porphyry v7, where an item was considered equivalent to a picture. This case was also difficult to treat in a map function, as a picture in iDAI.field is a entity (and a document) fully separate from the item it describes.

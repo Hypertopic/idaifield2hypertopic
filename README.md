@@ -30,7 +30,7 @@ Another alternative is to create the replication via an HTTP POST request http:/
         }
 
 ### 2. Argos installation
-Once the databases are duplicated, follow the installation procedure of Argos described here : <https://github.com/Hypertopic/Argos> in each duplicated database. This will add a design document `design/argos` with a set of views :
+Once the databases are duplicated, follow the installation procedure of Argos described here : <https://github.com/Hypertopic/Argos> in each duplicated database. This will add a design document `_design/argos` with the following set of views :
 * attribute
 * corpus
 * corpusV1
@@ -49,11 +49,11 @@ To let Porphyry read the iDAI.field data correctly, the view user and corpus nee
 * the Corpus view is available to the following address : <http://127.0.0.1:5984/[replicationDatabaseName]/_design/argos/_view/corpus>
 
 ### 4. Porphyry's configuration update
-The final step is to add the link towards each database in the list of Porphyry's services. To do so, open the configuration file at src/config/config.json and add the links after the other ones like the example :
+The final step is to add the link towards each database in the list of Porphyry's services. To do so, open the configuration file at `src/config/config.json` and add the links after the other ones like the example :
 
         "http://127.0.0.1:5984/[replicationDatabaseName]/_design/argos/_rewrite"
         
-For reminder, Porphyry source code can be found at the following link : <https://github.com/Hypertopic/Porphyry>.
+Make sure that the user is set to `offrandes`. For reminder, Porphyry source code can be found at the following link : <https://github.com/Hypertopic/Porphyry>.
 
 ## Current limitations
 

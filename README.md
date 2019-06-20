@@ -10,7 +10,18 @@ The goal of this project is to find a way to connect Porphyry to iDAI.field, and
 ### Replication of the databases
 For each project created in iDAI.field, the software create a separate database. This one contains at least one document with the id "project" which is the project document plus one document for each item, image or location.
 
-To let Porphyry read the data of iDAI.field you need to replicate the data in your own CouchDB
+To let Porphyry read the data of iDAI.field you need to replicate the data in your own database, so for example with CouchDB. An easy way to proceed the replication is to use the CouchDB interface. In the "Replication" part you need to fill the inputs.
+
+Replication Source: Remote Database / Local Database
+Source Name: http(s)://$USERNAME:$PASSWORD@REMOTE_SERVER/$DATABASE
+Replication Target: New Remote Database / New Local Database
+New Database: http(s)://$USERNAME:$PASSWORD@REMOTE_SERVER/$DATABASE / 
+Replication Type: Continuous
+Replication Document: this input can stay blank
+
+Another alternative is to create the replication via an HTTP request such as :
+
+
 
 ## Views
 The design document is based on the argos design document. The only differences are for the 2 views Corpus and User :
@@ -18,7 +29,7 @@ The design document is based on the argos design document. The only differences 
 * the User view is available to the following address: <http://127.0.0.1:5984/[replicationDatabaseName]/_design/[designDocumentID]/_rewrite/user/offrandes>
 * the Corpus view is available to the following address : <http://127.0.0.1:5984/[replicationDatabaseName]/_design/[designDocumentID]/_view/corpus>
 
-These two are necesseary to let Prophyry read the iDAI.field's data. The other ones do not have any impact on the software but are also available and follow the same rules as Argos views.
+These two are necesseary to let Prophyry read the iDAI.field's data. The other ones do not have any real impact on the software reading of the data but are also available and follow the same rules as Argos views.
 
 ## Current limitations
 

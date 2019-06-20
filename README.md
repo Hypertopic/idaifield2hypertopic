@@ -9,7 +9,7 @@ This solution lets the user see the items from iDAI.field into Porphyry, using s
 
 ## Configuration
 
-### Continuous replication of the databases
+### 1. Continuous replication of the databases
 For each project created in iDAI.field, the software create a separate database. This one contains at least one document with the id "project" which is the project document plus one document for each item, image or location.
 
 To let Porphyry read the data of iDAI.field you need to replicate the data in your own database, so for example with CouchDB. An easy way to proceed the replication is to use the CouchDB interface. In the "Replication" part you need to fill the inputs.
@@ -29,7 +29,7 @@ Another alternative is to create the replication via an HTTP POST request http:/
           "continuous":true
         }
 
-### Argos installation
+### 2. Argos installation
 Once the databases are duplicated, follow the installation procedure of Argos described here : <https://github.com/Hypertopic/Argos> in each duplicated database. This will add a design document _design/argos_ with a set of views :
 * attribute
 * corpus
@@ -42,16 +42,16 @@ Once the databases are duplicated, follow the installation procedure of Argos de
 * viewpoint
 * viewpointV1
 
-### Views' update
+### 3. Views' update
 To let Porphyry read the iDAI.field data correctly, the view user and corpus need to be update with the given map functions. The views can now be access via the following addresses :
 
 * the User view is available to the following address: <http://127.0.0.1:5984/[replicationDatabaseName]/_design/argos/_rewrite/user/offrandes>
 * the Corpus view is available to the following address : <http://127.0.0.1:5984/[replicationDatabaseName]/_design/argos/_view/corpus>
 
-### Porphyry's configuration update
+### 4. Porphyry's configuration update
 The final step is to add the link towards each database in the list of Porphyry's services. To do so, open the configuration file at src/config/config.json and add the links after the other ones like the example :
 
-        "http://127.0.0.1:5984/idai_project_replication/_design/argos/_rewrite"
+        "http://127.0.0.1:5984/[replicationDatabaseName]/_design/argos/_rewrite"
         
 For reminder, Porphyry source code can be found at the following link : <https://github.com/Hypertopic/Porphyry>.
 

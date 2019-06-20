@@ -21,9 +21,13 @@ New Database: http(s)://$USERNAME:$PASSWORD@REMOTE_SERVER/$DATABASE /
 Replication Type: Continuous
 Replication Document: this input can stay blank
 
-Another alternative is to create the replication via an HTTP request such as :
+Another alternative is to create the replication via an HTTP POST request http://127.0.0.1:5984/_replicate with a service such as RESTClient:
 
-
+{
+  "source":"db", 
+  "target":"db-replica", 
+  "continuous":true
+}
 
 ## Views
 The design document is based on the argos design document. The only differences are for the 2 views Corpus and User :

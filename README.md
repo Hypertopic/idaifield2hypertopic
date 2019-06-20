@@ -10,16 +10,16 @@ This solution lets the user see the items from iDAI.field into Porphyry, using s
 ## Configuration
 
 ### 1. Continuous replication of the databases
-For each project created in iDAI.field, the software create a separate database. This one contains at least one document with the id "project" which is the project document plus one document for each item, image or location.
+For each project created in iDAI.field, the software create a separate database. This one contains at least one document with `_id: project` which is the project document plus one document per item, image or location.
 
-To let Porphyry read the data of iDAI.field you need to replicate the data in your own database, so for example with CouchDB. An easy way to proceed the replication is to use the CouchDB interface. In the "Replication" part you need to fill the inputs.
+To let Porphyry read the data of iDAI.field you need to replicate the data in your own database, so for example with CouchDB. An easy way to proceed the replication is to use the CouchDB interface. In the `Replication` part you need to fill the inputs.
 
-Replication Source: Remote Database / Local Database
-Source Name: http(s)://$USERNAME:$PASSWORD@REMOTE_SERVER/$DATABASE
-Replication Target: New Remote Database / New Local Database
-New Database: http(s)://$USERNAME:$PASSWORD@REMOTE_SERVER/$DATABASE / 
-Replication Type: Continuous
-Replication Document: this input can stay blank
+Replication Source: `Remote Database` / `Local Database`
+Source Name: `http(s)://$USERNAME:$PASSWORD@REMOTE_SERVER/$DATABASE`
+Replication Target: `New Remote Database` / `New Local Database`
+New Database: `http(s)://$USERNAME:$PASSWORD@REMOTE_SERVER/$DATABASE`
+Replication Type: `Continuous`
+Replication Document: (this input can stay blank)
 
 Another alternative is to create the replication via an HTTP POST request http://127.0.0.1:5984/_replicate with a service such as RESTClient:
 

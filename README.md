@@ -10,7 +10,7 @@ This solution lets the user see the items from iDAI.field into Porphyry, using s
 ## Configuration
 
 ### 1. Continuous replication of the databases
-For each project created in iDAI.field, the software create a separate database. This one contains at least one document with `_id: project` which is the project document plus one document per item, image or location.
+For each project created in iDAI.field, the software create a separate database. This one contains at least one document with `_id: project` which is the project document plus one document per item, image or location. In porphyry, each project is read as a corpus.
 
 To let Porphyry read the data of iDAI.field you need to replicate the data in your own database, so for example with CouchDB. An easy way to proceed the replication is to use the CouchDB interface. In the `Replication` part you need to fill the inputs.
 
